@@ -337,3 +337,12 @@ h1 {
   .flake, .hero-image img { animation: none; }
   .btn, .card, .door { transition: none; }
 }
+
+/* Lichterstadt */
+.city { margin-top: 64px; height: 190px; position: relative; border-bottom: 3px solid #e6efff; }
+.city svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.city .win { fill: #ffd98a; animation: twinkle 3s ease-in-out infinite; }
+.city .win.violet { fill: #c084fc; }
+.city .snowcap { fill: #e6efff; }
+@keyframes twinkle { 0%, 100% { opacity: .95; } 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .city .win { animation: none; } }
