@@ -1,9 +1,9 @@
 // ===== Einstellungen: hier deine Discord-Einladungslinks eintragen =====
 // Format: "https://discord.gg/DEINCODE"
 const DISCORD_LINKS = {
-  haupt: "",      // Haupt-Discord (Buttons "Discord beitreten")
+  haupt: "https://discord.gg/dGDnvbU97E",      // Haupt-Discord (Buttons "Discord beitreten")
   polizei: "",    // Polizei-Discord
-  feuerwehr: ""   // Feuerwehr- & Rettungsdienst-Discord
+  feuerwehr: "https://discord.gg/bnDZ7dGVBq"   // Feuerwehr- & Rettungsdienst-Discord
 };
 
 // Texte hinter den 24 Türchen (leer lassen = Platzhalter)
@@ -94,4 +94,44 @@ document.querySelectorAll("[data-link]").forEach(function (el) {
 
     container.appendChild(door);
   }
+})();
+
+// Lichterstadt: kleine Skyline mit leuchtenden Fenstern
+(function () {
+  const city = document.getElementById("city");
+  const ns = "http://www.w3.org/2000/svg";
+  const W = 1200, H = 190;
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.setAttribute("preserveAspectRatio", "xMidYMax slice");
+  svg.setAttribute("aria-hidden", "true");
+
+  function el(name, attrs) {
+    const e = document.createElementNS(ns, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    svg.appendChild(e);
+    return e;
+  }
+
+  let x = 0, i = 0;
+  while (x < W) {
+    const w = 46 + ((i * 17) % 40);
+    const h = 50 + ((i * 53) % 110);
+    const y = H - h;
+    el("rect", { x: x, y: y, width: w - 4, height: h, fill: i % 2 ? "#14062c" : "#1d0a3d" });
+    el("rect", { x: x - 1, y: y - 5, width: w - 2, height: 6, rx: 3, class: "snowcap" });
+    if (i % 5 === 2) el("rect", { x: x + w / 2 - 3, y: y - 28, width: 2, height: 24, fill: "#14062c" });
+    for (let wy = y + 12; wy < H - 10; wy += 16) {
+      for (let wx = x + 8; wx < x + w - 14; wx += 12) {
+        const r = (wx * 7 + wy * 13 + i * 3) % 10;
+        if (r < 6) {
+          const win = el("rect", { x: wx, y: wy, width: 5, height: 7, class: "win" + (r === 0 ? " violet" : "") });
+          win.style.animationDelay = "-" + ((wx * 3 + wy) % 30) / 10 + "s";
+        }
+      }
+    }
+    x += w;
+    i++;
+  }
+  city.appendChild(svg);
 })();
