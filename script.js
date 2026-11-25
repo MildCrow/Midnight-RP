@@ -6,10 +6,23 @@ const DISCORD_LINKS = {
   feuerwehr: "https://discord.gg/bnDZ7dGVBq"   // Feuerwehr- & Rettungsdienst-Discord
 };
 
-// Texte hinter den 24 Türchen (leer lassen = Platzhalter)
+// Texte hinter den 24 Türchen (ohne Eintrag erscheint "Überraschung folgt")
 const SURPRISES = {
-  // 1: "Dein Text für Türchen 1",
-  // 2: "Dein Text für Türchen 2",
+  2: "Verlosung – Der Gewinner darf einen Tag lang ein Event seiner Wahl mitplanen.",
+  3: "100 Juwelen für 1 Woche",
+  6: "1.000 Gold für 1 Woche",
+  8: "Verlosung – Der Gewinner darf das Thema eines Community-Events bestimmen.",
+  10: "25 Diamanten für 1 Woche",
+  11: "Verlosung von 3 – Eigene temporäre Voice-Channel für 1 Woche",
+  12: "Verlosung von 3 – Eigene temporäre Voice-Channel für 1 Monat",
+  13: "Verlosung – Der Gewinner darf das Thema eines Community-Events bestimmen.",
+  14: "250 Juwelen für 1 Woche",
+  16: "Eine Woche früher Zugang zu Informationen über ein Community-Event",
+  18: "500 Juwelen für 1 Woche",
+  20: "Verlosung – Der Gewinner darf einen Tag lang ein Event seiner Wahl mitplanen.",
+  22: "Teilnahme an einer Sonderverlosung für einen Büroschlüssel nach Wahl",
+  23: "Teilnahme an einer Sonderverlosung für 1 Tag Fly",
+  24: "3.000 Gold für 1 Woche – Exklusive Weihnachtsrolle im Discord"
 };
 // =====================================================================
 
@@ -83,7 +96,7 @@ document.querySelectorAll("[data-link]").forEach(function (el) {
         const span = document.createElement("span");
         if (open) {
           span.className = "door-surprise";
-          span.textContent = SURPRISES[n] || "[Überraschung Nr. " + n + "]";
+          span.textContent = SURPRISES[n] || "Überraschung folgt";
         } else {
           span.className = "door-number";
           span.textContent = n;
